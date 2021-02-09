@@ -73,7 +73,7 @@ fetch(url)
 		$("#search-input").on("keyup", function () {
 			// jquery function on each card class, pick the current element and filter the specific elements when we type in the seach box
 			$(".card").each((index, element) => {
-				var value = $(this).val().toLowerCase();
+				let value = $(this).val().toLowerCase();
 				$(element).filter(function () {
 					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 				});
