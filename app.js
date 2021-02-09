@@ -5,13 +5,13 @@ let galleryDiv = document.querySelector("#gallery");
 let htmlCard = "";
 let modalCard = "";
 let employees = [];
-let body = document.querySelector('body')
+let body = document.querySelector("body");
 
 fetch(url)
 	.then((res) => res.json())
 	.then((data) => {
 		employees = data.results;
-		employees.forEach((element,index) => {
+		employees.forEach((element, index) => {
 			htmlCard = `<div class="card" data-index="${index}">
                 <div class="card-img-container">
                     <img class="card-img" src="${element.picture.large}" alt="profile picture">
@@ -23,25 +23,19 @@ fetch(url)
                 </div>
             </div>`;
 			galleryDiv.insertAdjacentHTML("beforeend", htmlCard);
-			
 		});
-		
+
 		function displayModal(index) {
 			let {
 				name,
 				dob,
 				phone,
 				email,
-				 location: {
-					city,
-					street,
-					state,
-					postcode
-				}, 
-				picture
+				location: { city, street, state, postcode },
+				picture,
 			} = employees[index];
 
-			let date = new Date (dob.date)
+			let date = new Date(dob.date);
 
 			modalCard = `<div class="modal-container">
 			<div class="modal">
@@ -56,26 +50,21 @@ fetch(url)
 					<p class="modal-text">${street.number}, ${city}, ${state} ${postcode}</p>
 					<p class="modal-text">Birthday: ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
 				</div>
-			</div>`
-			body.insertAdjacentHTML('beforeend',modalCard)
-			
+			</div>`;
+			body.insertAdjacentHTML("beforeend", modalCard);
 		}
 
-		
-		galleryDiv.addEventListener('click',function(e){
-			if(e.target !== galleryDiv) {
-				const cardImg = e.target.closest('.card');
-				const index = cardImg.getAttribute('data-index')
-				displayModal(index)
-				document.querySelector('.modal-close-btn').addEventListener('click',function(){
-					console.log(this)
-					document.querySelector('.modal-container').style.display = 'none'
-				})
-			}
-		})
+		document.querySelectorAll(".card").forEach((element) => {
+			element.addEventListener("click", function () {
+				const index = element.getAttribute("data-index");
+				displayModal(index);
+				document.querySelectorAll(".modal-close-btn").forEach((element) => {
+					element.addEventListener("click", function () {
+						document.querySelectorAll(".modal-container").forEach((element) => {
+							element.style.display = "none";
+						});
+					});
+				});
+			});
+		});
 	});
-	
-	
-	
-
-
