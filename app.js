@@ -12,9 +12,9 @@ fetch(url)
 	.then((data) => {
 		employees = data.results;
 		employees.forEach((element,index) => {
-			htmlCard = `<div class="card">
+			htmlCard = `<div class="card" data-index="${index}">
                 <div class="card-img-container">
-                    <img class="card-img" src="${element.picture.large}" alt="${index}">
+                    <img class="card-img" src="${element.picture.large}" alt="profile picture">
                 </div>
                 <div class="card-info-container">
                     <h3 id="name" class="card-name cap">${element.name.first} ${element.name.last}</h3>
@@ -47,7 +47,7 @@ fetch(url)
 			<div class="modal">
 				<button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
 				<div class="modal-info-container">
-					<img class="modal-img" src="${picture.large}" alt="${index}">
+					<img class="modal-img" src="${picture.large}" alt="profile picture">
 					<h3 id="name" class="modal-name cap">${name.first} ${name.last}</h3>
 					<p class="modal-text">${email}</p>
 					<p class="modal-text cap">${location}</p>
@@ -64,16 +64,17 @@ fetch(url)
 		
 		galleryDiv.addEventListener('click',function(e){
 			if(e.target !== galleryDiv) {
-				const cardImg = e.target.closest('.card-img');
-				const index = cardImg.getAttribute('alt')
+				const cardImg = e.target.closest('.card');
+				const index = cardImg.getAttribute('data-index')
 				displayModal(index)
+				document.querySelector('.modal-close-btn').addEventListener('click',function(){
+					console.log(this)
+					document.querySelector('.modal-container').style.display = 'none'
+				})
 			}
 		})
-
-		
-		
 	});
-
+	
 	
 	
 
