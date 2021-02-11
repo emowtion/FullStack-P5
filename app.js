@@ -54,31 +54,10 @@ fetch(url)
 					<p class="modal-text">${street.number}, ${city}, ${state} ${postcode}</p>
 					<p class="modal-text">Birthday: ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
 				</div>
-			</div>
-			<div class="modal-btn-container">
-                    <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-                    <button type="button" id="modal-next" class="modal-next btn">Next</button>
-                </div>
-			`;
+			</div>`;
 			body.insertAdjacentHTML("beforeend", modalCard);
 		}
-		// pick the search inout var display the html needed for the search bar into the search div
-		searchInput = `<form action="#" method="get"> 
-		<input type="search" id="search-input" class="search-input" placeholder="Search...">
-		<input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
-		</form>`;
 
-		searchDiv.insertAdjacentHTML("beforeend", searchInput);
-
-		$("#search-input").on("keyup", function () {
-			// jquery function on each card class, pick the current element and filter the specific elements when we type in the seach box
-			$(".card").each((index, element) => {
-				let value = $(this).val().toLowerCase();
-				$(element).filter(function () {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-				});
-			});
-		});
 
 		document.querySelectorAll(".card").forEach((element) => {
 			// loop over all the cards classes, on each click we pick the index of each element(card) so we can display the modal
