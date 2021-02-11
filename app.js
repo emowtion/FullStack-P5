@@ -6,7 +6,6 @@ let htmlCard = "";
 let modalCard = "";
 let employees = [];
 const body = document.querySelector("body");
-const searchDiv = document.querySelector(".search-container");
 let searchInput = "";
 fetch(url)
 	.then((res) => res.json())
@@ -40,8 +39,8 @@ fetch(url)
 			} = employees[index];
 
 			let date = new Date(dob.date);
-
-			modalCard = `<div class="modal-container"> 
+			// add to the modal when clicked the followinf HTML with dara from the API and append it to the body
+			modalCard = `<div class="modal-container">  
 			<div class="modal">
 				<button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
 				<div class="modal-info-container">
