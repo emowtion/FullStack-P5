@@ -47,7 +47,7 @@ fetch(url)
 					<img class="modal-img" src="${picture.large}" alt="profile picture">
 					<h3 id="name" class="modal-name cap">${name.first} ${name.last}</h3>
 					<p class="modal-text">${email}</p>
-					<p class="modal-text cap">${location}</p>
+					<p class="modal-text cap">${city}</p>
 					<hr>
 					<p class="modal-text">${phone}</p>
 					<p class="modal-text">${street.number}, ${city}, ${state} ${postcode}</p>
